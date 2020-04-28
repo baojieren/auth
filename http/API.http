@@ -1,0 +1,63 @@
+# 获取openId
+GET {{host}}/auth/wx/openid?code=043wXZ021cYIWS1PIv221XBK021wXZ0X
+Accept: application/json
+
+###
+
+# 小程序登录
+GET {{host}}/auth/wx/signin?openId=opW3Y5TDAfxnojM8BvS6gYRIIaVU
+Content-Type: application/json
+
+> {% client.global.set("auth_token", response.body.data.token); %}
+
+###
+
+# 后台注册
+POST {{host}}/auth/mng/signup
+Content-Type: application/json
+
+{
+  "phone": "18585131313",
+  "password": "111111"
+}
+
+###
+
+# 后台登出
+GET {{host}}/auth/mng/signout
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+###
+
+# 用手机号查询用户基础信息
+GET {{host}}/auth/userInfoByPhone?phone=18585131312
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+###
+
+# 用userId查询用户基础信息
+GET {{host}}/auth/userInfoByUserId?userId=4
+Accept: application/json
+
+###
+
+# 检查授权
+GET {{host}}/auth/checkUrlAuth?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJ0ZWFjaGVyIiwic3R1ZGVudCJdLCJleHAiOjE1ODgzODY2MzIsInVzZXJJZCI6IjQiLCJhY3Rpb25zIjpbXSwiaWF0IjoxNTg3MDkwNjMyfQ.8Zpd-SPPaC4Qc1usGjjZ21-fCVlmjMrtJbzeL61eQOo&url=/auth1/hello
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+###
+
+# gateway 检查授权
+GET {{host}}/auth/mng/signin
+Accept: application/json
+Authorization: Bearer
+
+###
+
+GET http://127.0.0.1:8080/auth/test
+Accept: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJ0ZWFjaGVyIiwic3R1ZGVudCJdLCJleHAiOjE1ODgzODY2MzIsInVzZXJJZCI6IjQiLCJhY3Rpb25zIjpbXSwiaWF0IjoxNTg3MDkwNjMyfQ.8Zpd-SPPaC4Qc1usGjjZ21-fCVlmjMrtJbzeL61eQOo
+###

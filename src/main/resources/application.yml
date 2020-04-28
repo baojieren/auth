@@ -1,0 +1,18 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+# 通用mapper的方法不需要, 但是自己的方法需要
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.gmsj.model.po
+
+mapper:
+  safe-delete: true
+  safe-update: true
+  not-empty: true
+
+pagehelper:
+  reasonable: true
+  helper-dialect: mysql
